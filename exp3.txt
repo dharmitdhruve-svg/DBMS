@@ -1,0 +1,221 @@
+SQL> CREATE TABLE CUST_MASTER(
+  2  CUST_NO VARCHAR2(5),
+  3  CUST_NAME VARCHAR2(7),
+  4  ADDRESS1 VARCHAR2(7),
+  5  ADDRESS2 VARCHAR2(8),
+  6  CITY VARCHAR2(10),
+  7  PH_NO NUMBER(10)
+  8  );
+
+Table created.
+
+SQL> INSERT INTO CUST_MASTER
+  2  VALUES('C1','PRIYA','RINGROAD','PUJAPARK','AHEMDABAD','GUJARAT',9879216287);
+INSERT INTO CUST_MASTER
+            *
+ERROR at line 1:
+ORA-00913: too many values 
+
+
+SQL> INSERT INTO CUST_MASTER
+  2  VALUES('C1','PRIYA','RINGROAD','PUJAPARK','AMDAVAD','GUJARAT',9988998899);
+INSERT INTO CUST_MASTER
+            *
+ERROR at line 1:
+ORA-00913: too many values 
+
+
+SQL> INSERT INTO CUST_MASTER
+  2  VALUES('C1','PRIYA','RDROAD','RAJPARK','AMDAVAD','GUJARAT',9988998899);
+INSERT INTO CUST_MASTER
+            *
+ERROR at line 1:
+ORA-00913: too many values 
+
+
+SQL> ALTER TABLE CUST_MASTER
+  2  ADD STATE VARCHAR2(10);
+
+Table altered.
+
+SQL> SELECT * FROM CUST_MASTER;
+
+no rows selected
+
+SQL> DESC CUST_MASTER;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUST_NO                                            VARCHAR2(5)
+ CUST_NAME                                          VARCHAR2(7)
+ ADDRESS1                                           VARCHAR2(7)
+ ADDRESS2                                           VARCHAR2(8)
+ CITY                                               VARCHAR2(10)
+ PH_NO                                              NUMBER(10)
+ STATE                                              VARCHAR2(10)
+
+SQL> INSERT INTO CUST_MASTER
+  2  VALUES('C1','PRIYA','RDROAD','RAJPARK','AMDAVAD',9988998899,'GUJARAT');
+
+1 row created.
+
+SQL> INSERT INTO CUST_MASTER
+  2  VALUES('C2','PUJA','DJNAGAR','SGCOLONY','BANARAS',7788778877,'UP');
+
+1 row created.
+
+SQL> INSERT INTO CUST_MASTER
+  2  VALUES('C3','ANKIT','BORIVALI','PGNAGAR','MUMBAI',6677667766,'MAHARASTRA');
+VALUES('C3','ANKIT','BORIVALI','PGNAGAR','MUMBAI',6677667766,'MAHARASTRA')
+                    *
+ERROR at line 2:
+ORA-12899: value too large for column "C##DDD8"."CUST_MASTER"."ADDRESS1" 
+(actual: 8, maximum: 7) 
+
+
+SQL> INSERT INTO CUST_MASTER
+  2  VALUES('C3','ANKIT','BORIVALI','PGNAGAR','MUMBAI',6677667766,'MH');
+VALUES('C3','ANKIT','BORIVALI','PGNAGAR','MUMBAI',6677667766,'MH')
+                    *
+ERROR at line 2:
+ORA-12899: value too large for column "C##DDD8"."CUST_MASTER"."ADDRESS1" 
+(actual: 8, maximum: 7) 
+
+
+SQL> INSERT INTO CUST_MASTER
+  2  VALUES('C3','ANKIT','VIRAR','PGNAGAR','MUMBAI',6677667766,'MH');
+
+1 row created.
+
+SQL> INSERT INTO CUST_MASTER
+  2  VALUES('C4','RAVI','VJROAD','ACOLONY','DELHI',2288228822,'DELHI');
+
+1 row created.
+
+SQL> INSERT INTO CUST_MASTER
+  2  VALUES('C5','ALPA',JMROAD','DCOLONY','SURAT',9977997799,'GUJARAT');
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> INSERT INTO CUST_MASTER
+  2  VALUES('C5','ALPA','JMROAD','DCOLONY','SURAT',9988779988,'GUJARAT');
+
+1 row created.
+
+SQL> SELECT * FROM CUST_MASTER;
+
+CUST_ CUST_NA ADDRESS ADDRESS2 CITY            PH_NO STATE                      
+----- ------- ------- -------- ---------- ---------- ----------                 
+C1    PRIYA   RDROAD  RAJPARK  AMDAVAD    9988998899 GUJARAT                    
+C2    PUJA    DJNAGAR SGCOLONY BANARAS    7788778877 UP                         
+C3    ANKIT   VIRAR   PGNAGAR  MUMBAI     6677667766 MH                         
+C4    RAVI    VJROAD  ACOLONY  DELHI      2288228822 DELHI                      
+C5    ALPA    JMROAD  DCOLONY  SURAT      9988779988 GUJARAT                    
+
+SQL> SELECT * FROM CUST_MASTER WHERE STATE ='GUJARAT';
+
+CUST_ CUST_NA ADDRESS ADDRESS2 CITY            PH_NO STATE                      
+----- ------- ------- -------- ---------- ---------- ----------                 
+C1    PRIYA   RDROAD  RAJPARK  AMDAVAD    9988998899 GUJARAT                    
+C5    ALPA    JMROAD  DCOLONY  SURAT      9988779988 GUJARAT                    
+
+SQL> SELECT * FROM CUST_MASTER ORDER BY CUST_NAME;
+
+CUST_ CUST_NA ADDRESS ADDRESS2 CITY            PH_NO STATE                      
+----- ------- ------- -------- ---------- ---------- ----------                 
+C5    ALPA    JMROAD  DCOLONY  SURAT      9988779988 GUJARAT                    
+C3    ANKIT   VIRAR   PGNAGAR  MUMBAI     6677667766 MH                         
+C1    PRIYA   RDROAD  RAJPARK  AMDAVAD    9988998899 GUJARAT                    
+C2    PUJA    DJNAGAR SGCOLONY BANARAS    7788778877 UP                         
+C4    RAVI    VJROAD  ACOLONY  DELHI      2288228822 DELHI                      
+
+SQL> SELECT DISTINCT CITY FROM CUST_NAME;
+SELECT DISTINCT CITY FROM CUST_NAME
+                          *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT DISTINCT CITY FROM CUST_MASTER;
+
+CITY                                                                            
+----------                                                                      
+AMDAVAD                                                                         
+BANARAS                                                                         
+MUMBAI                                                                          
+DELHI                                                                           
+SURAT                                                                           
+
+SQL> UPDATE CUST_MASTER SET ADDRESS1='CGROAD' WHERE ADDRESS1='JMROAD';
+
+1 row updated.
+
+SQL> SELECT * FROM CUST_MASTER;
+
+CUST_ CUST_NA ADDRESS ADDRESS2 CITY            PH_NO STATE                      
+----- ------- ------- -------- ---------- ---------- ----------                 
+C1    PRIYA   RDROAD  RAJPARK  AMDAVAD    9988998899 GUJARAT                    
+C2    PUJA    DJNAGAR SGCOLONY BANARAS    7788778877 UP                         
+C3    ANKIT   VIRAR   PGNAGAR  MUMBAI     6677667766 MH                         
+C4    RAVI    VJROAD  ACOLONY  DELHI      2288228822 DELHI                      
+C5    ALPA    CGROAD  DCOLONY  SURAT      9988779988 GUJARAT                    
+
+SQL> SELECT * FROM CUST_MASTER WHERE STATE ='GUJARAT';
+
+CUST_ CUST_NA ADDRESS ADDRESS2 CITY            PH_NO STATE                      
+----- ------- ------- -------- ---------- ---------- ----------                 
+C1    PRIYA   RDROAD  RAJPARK  AMDAVAD    9988998899 GUJARAT                    
+C5    ALPA    CGROAD  DCOLONY  SURAT      9988779988 GUJARAT                    
+
+SQL> ALTER TABLE CUST_MASTER
+  2  PIN_CODE NUMBER(8);
+PIN_CODE NUMBER(8)
+*
+ERROR at line 2:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> ALTER TABLE CUST_MASTER
+  2  PIN_CODE INT(8);
+PIN_CODE INT(8)
+*
+ERROR at line 2:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> ALTER TABLE CUST_MASTER
+  2  PIN_CODE VARCHAR2(10);
+PIN_CODE VARCHAR2(10)
+*
+ERROR at line 2:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> ALTER TABLE CUST_MASTER
+  2  ADD PIN_CODE VARCHAR2(10);
+
+Table altered.
+
+SQL> ALTER TABLE CUST_MASTER
+  2  DROP COLUMN PIN_CODE;
+
+Table altered.
+
+SQL> DELETE FROM CUST_MASTER WHERE PH_NO=6677667766;
+
+1 row deleted.
+
+SQL> RENAME CUST_MASTER TO CUSTOMER_DETAIL;
+
+Table renamed.
+
+SQL> SELECT * FROM CUSTOMER_DETAIL;
+
+CUST_ CUST_NA ADDRESS ADDRESS2 CITY            PH_NO STATE                      
+----- ------- ------- -------- ---------- ---------- ----------                 
+C1    PRIYA   RDROAD  RAJPARK  AMDAVAD    9988998899 GUJARAT                    
+C2    PUJA    DJNAGAR SGCOLONY BANARAS    7788778877 UP                         
+C4    RAVI    VJROAD  ACOLONY  DELHI      2288228822 DELHI                      
+C5    ALPA    CGROAD  DCOLONY  SURAT      9988779988 GUJARAT                    
+
+SQL> SPOOL OFF;
