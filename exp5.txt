@@ -1,0 +1,165 @@
+SQL> CREATE TABLE BANK_BRANCJ
+  2  
+SQL> CREATE TABLE BANK_BRANCH(
+  2  BRANCH_ID VARCHAR2(10),
+  3  BRANCH_NAME VARCHAR2(12),
+  4  BRANCH_ADDRESS VARCHAR2(10),
+  5  BRANCH_CITY VARCHAR2(10),
+  6  BRANCH_STATE VARCHAR2(10),
+  7  BRANCH_OPEN_DATE DATE
+  8  );
+CREATE TABLE BANK_BRANCH(
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> CREATE TABLE BANK_BRANCH2(
+  2  BRANCH_ID VARCHAR2(10),
+  3  BRANCH_NAME VARCHAR2(12),
+  4  BRANCH_ADDRESS VARCHAR2(10),
+  5  BRANCH_CITY VARCHAR2(10),
+  6  BRANCH_STATE VARCHAR2(10),
+  7  BRANCH
+  8  BRANCH_OPEN_DATE DATE
+  9  );
+BRANCH_OPEN_DATE DATE
+                 *
+ERROR at line 8:
+ORA-00907: missing right parenthesis 
+
+
+SQL> CREATE TABLE BANK_BRANCH3(
+  2  BRANCH_ID VARCHAR2(10),
+  3  BRANCH_NAME VARCHAR2(10),
+  4  BRANCH_ADDRESS VARCHAR2(12),
+  5  BRANCH_CITY VARCHAR2(10),
+  6  BRANCH_STATE VARCHAR2(10),
+  7  BRANCH_OPEN_DATE DATE
+  8  );
+
+Table created.
+
+SQL> INSERT INTO BANK_BRANCH3
+  2  VALUES('B001','BOI','JAGNATROAD','RAJKOT','GUJARAT','22-MAR-2015');
+
+1 row created.
+
+SQL> INSERT INTO BANK_BRANCH3
+  2  VALUES('B002','SBI','BORIWROAD','MUMBAI','MH','12-JAN-2000');
+
+1 row created.
+
+SQL> INSERT INTO BANK_BRANCH3
+  2  VALUES('B003','HDFC','AGRAROAD','AGRA','UP','04-FEB-1998');
+
+1 row created.
+
+SQL> INSERT INTO BANK_BRANCH3
+  2  VALUES('B004','DENABANK','CGROAD','AHEMDABAD','GUJARAT','20-SEP-2012');
+
+1 row created.
+
+SQL> INSERT INTO BANK_BRANCH3
+  2  VALUES('B005','ICICI','MAJVIROAD','JUNAGADH','GUJARAT','07-MAY-2011');
+
+1 row created.
+
+SQL> SELECT * FROM BANK_BRANCH3;
+
+BRANCH_ID  BRANCH_NAM BRANCH_ADDRE BRANCH_CIT BRANCH_STA BRANCH_OP              
+---------- ---------- ------------ ---------- ---------- ---------              
+B001       BOI        JAGNATROAD   RAJKOT     GUJARAT    22-MAR-15              
+B002       SBI        BORIWROAD    MUMBAI     MH         12-JAN-00              
+B003       HDFC       AGRAROAD     AGRA       UP         04-FEB-98              
+B004       DENABANK   CGROAD       AHEMDABAD  GUJARAT    20-SEP-12              
+B005       ICICI      MAJVIROAD    JUNAGADH   GUJARAT    07-MAY-11              
+
+SQL> SELECT BRANCH_ID FROM BANK_BRANCH3;
+
+BRANCH_ID                                                                       
+----------                                                                      
+B001                                                                            
+B002                                                                            
+B003                                                                            
+B004                                                                            
+B005                                                                            
+
+SQL> SELECT BRANCH_ID,BRANCH_ADDRESS FROM BANK_BRANCH3;
+
+BRANCH_ID  BRANCH_ADDRE                                                         
+---------- ------------                                                         
+B001       JAGNATROAD                                                           
+B002       BORIWROAD                                                            
+B003       AGRAROAD                                                             
+B004       CGROAD                                                               
+B005       MAJVIROAD                                                            
+
+SQL> SELECT BRANCH_NAME,BRANCH_ADDRESS,BRANCH_CITY FROM BANK_BRANCH3;
+
+BRANCH_NAM BRANCH_ADDRE BRANCH_CIT                                              
+---------- ------------ ----------                                              
+BOI        JAGNATROAD   RAJKOT                                                  
+SBI        BORIWROAD    MUMBAI                                                  
+HDFC       AGRAROAD     AGRA                                                    
+DENABANK   CGROAD       AHEMDABAD                                               
+ICICI      MAJVIROAD    JUNAGADH                                                
+
+SQL> SELECT BRANCH_CITY,BRANCH_STATE,BRANCH_OPEN_DATE FROM BANK_BRANCH3;
+
+BRANCH_CIT BRANCH_STA BRANCH_OP                                                 
+---------- ---------- ---------                                                 
+RAJKOT     GUJARAT    22-MAR-15                                                 
+MUMBAI     MH         12-JAN-00                                                 
+AGRA       UP         04-FEB-98                                                 
+AHEMDABAD  GUJARAT    20-SEP-12                                                 
+JUNAGADH   GUJARAT    07-MAY-11                                                 
+
+SQL> SELECT * FROM BANK_BRANCH3 ORDER BY BRANCH_ID;
+
+BRANCH_ID  BRANCH_NAM BRANCH_ADDRE BRANCH_CIT BRANCH_STA BRANCH_OP              
+---------- ---------- ------------ ---------- ---------- ---------              
+B001       BOI        JAGNATROAD   RAJKOT     GUJARAT    22-MAR-15              
+B002       SBI        BORIWROAD    MUMBAI     MH         12-JAN-00              
+B003       HDFC       AGRAROAD     AGRA       UP         04-FEB-98              
+B004       DENABANK   CGROAD       AHEMDABAD  GUJARAT    20-SEP-12              
+B005       ICICI      MAJVIROAD    JUNAGADH   GUJARAT    07-MAY-11              
+
+SQL> SELECT * FRON BANK_BRANCH3 ORDER BY BRANCH_NAME;
+SELECT * FRON BANK_BRANCH3 ORDER BY BRANCH_NAME
+         *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT * FROM BANK_BRANCH3 ORDER BY BRANCH_NAME;
+
+BRANCH_ID  BRANCH_NAM BRANCH_ADDRE BRANCH_CIT BRANCH_STA BRANCH_OP              
+---------- ---------- ------------ ---------- ---------- ---------              
+B001       BOI        JAGNATROAD   RAJKOT     GUJARAT    22-MAR-15              
+B004       DENABANK   CGROAD       AHEMDABAD  GUJARAT    20-SEP-12              
+B003       HDFC       AGRAROAD     AGRA       UP         04-FEB-98              
+B005       ICICI      MAJVIROAD    JUNAGADH   GUJARAT    07-MAY-11              
+B002       SBI        BORIWROAD    MUMBAI     MH         12-JAN-00              
+
+SQL> SELECT * FROM BANK_BRANCH3 ORDER BY BRANCH_CITY;
+
+BRANCH_ID  BRANCH_NAM BRANCH_ADDRE BRANCH_CIT BRANCH_STA BRANCH_OP              
+---------- ---------- ------------ ---------- ---------- ---------              
+B003       HDFC       AGRAROAD     AGRA       UP         04-FEB-98              
+B004       DENABANK   CGROAD       AHEMDABAD  GUJARAT    20-SEP-12              
+B005       ICICI      MAJVIROAD    JUNAGADH   GUJARAT    07-MAY-11              
+B002       SBI        BORIWROAD    MUMBAI     MH         12-JAN-00              
+B001       BOI        JAGNATROAD   RAJKOT     GUJARAT    22-MAR-15              
+
+SQL> SELECT * FROM BANK_BRANCH3 ORDER BY BRANCH_STATE;
+
+BRANCH_ID  BRANCH_NAM BRANCH_ADDRE BRANCH_CIT BRANCH_STA BRANCH_OP              
+---------- ---------- ------------ ---------- ---------- ---------              
+B001       BOI        JAGNATROAD   RAJKOT     GUJARAT    22-MAR-15              
+B005       ICICI      MAJVIROAD    JUNAGADH   GUJARAT    07-MAY-11              
+B004       DENABANK   CGROAD       AHEMDABAD  GUJARAT    20-SEP-12              
+B002       SBI        BORIWROAD    MUMBAI     MH         12-JAN-00              
+B003       HDFC       AGRAROAD     AGRA       UP         04-FEB-98              
+
+SQL> SPOOL OFF;
