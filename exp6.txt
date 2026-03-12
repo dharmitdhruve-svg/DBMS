@@ -1,0 +1,87 @@
+SQL> select * from bank_branch;
+
+BRNACH_I BRANCH_NAM BRANCH_ADD BRANCH_STATE                   BRANCH_OP         
+-------- ---------- ---------- ------------------------------ ---------         
+BRANCH_CIT    PINCODE                                                           
+---------- ----------                                                           
+B001     B0I        JAGNATROAD GUJARAT                        22-MAR-15         
+RAJKOT                                                                          
+                                                                                
+B002     SBI        BORIWAROAD MH                             12-JAN-00         
+MUMBAI                                                                          
+                                                                                
+B003     UNION      AGRAROAD   UP                             04-NOV-15         
+AGRA                                                                            
+                                                                                
+
+BRNACH_I BRANCH_NAM BRANCH_ADD BRANCH_STATE                   BRANCH_OP         
+-------- ---------- ---------- ------------------------------ ---------         
+BRANCH_CIT    PINCODE                                                           
+---------- ----------                                                           
+B004     DENABANK   CGROAD     GUJARAT                        20-SEP-12         
+AMDAVAD                                                                         
+                                                                                
+B005     ICICI      MAJVAROAD  GUJARAT                        07-MAY-11         
+JUNAGADH                                                                        
+                                                                                
+
+SQL> ALTER TABLE BANK_BRANCH
+  2  MODIFY BRANCH_STATE VARCHAR2(25);
+
+Table altered.
+
+SQL> UPDATE BANK_BRANCH SET BRANCH_NAME='UNION' WHERE BRNACH_ID='B003';
+
+1 row updated.
+
+SQL> UPDATE BANK_BRANCH SET BRANCH_STATE='DELHI' WHERE BRANCH_NAME='BOI';
+
+0 rows updated.
+
+SQL> UPDATE BRANCH_OPEN_DATE='04-NOV-2015' WHERE BRANCH_NAME='UNION';
+UPDATE BRANCH_OPEN_DATE='04-NOV-2015' WHERE BRANCH_NAME='UNION'
+                       *
+ERROR at line 1:
+ORA-00971: missing SET keyword 
+
+
+SQL> UPDATE BANK_BRANCH SET BRANCH_OPEN_DATE='04-NOV-2015' WHERE BRANCH_NAME='UNION';
+
+1 row updated.
+
+SQL> ALTER TABLE BANK_BRANCH
+  2  ADD PINCODE NUMBER(6);
+ADD PINCODE NUMBER(6)
+    *
+ERROR at line 2:
+ORA-01430: column being added already exists in table 
+
+
+SQL> UPDATE BANK_BRANCH SET PINCODE=360006 WHERE BRANCH_NAME='DENABANK';
+
+1 row updated.
+
+SQL> DELETE FROM BANK_BRANCH WHERE BRANCH_OPEN_DATE='07-MAY-2011';
+
+1 row deleted.
+
+SQL> RENAME BANK_BRANCH TO BRANCH_MASTER;
+
+Table renamed.
+
+SQL> DESC BRANCH_MASTER;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ BRNACH_ID                                          VARCHAR2(8)
+ BRANCH_NAME                                        VARCHAR2(10)
+ BRANCH_ADDRESS                                     VARCHAR2(10)
+ BRANCH_STATE                                       VARCHAR2(25)
+ BRANCH_OPEN_DATE                                   DATE
+ BRANCH_CITY                                        VARCHAR2(10)
+ PINCODE                                            NUMBER(6)
+
+SQL> CREATE TABLE BANCH_INFO AS SELECT * FROM BRANCH_MASTER;
+
+Table created.
+
+SQL> SPOOL OFF;
