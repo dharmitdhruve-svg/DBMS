@@ -1,0 +1,427 @@
+SQL> CREATE TABLE JOB(
+  2  JOB_ID VARCHAR2(6),
+  3  JOB_NAME VARCHAR2(15),
+  4  MIN_SAL NUMBER(8),
+  5  MAX_SAL NUMBER(8)
+  6  );
+
+Table created.
+
+SQL> INSERT INTO JOB
+  2  VALUES('IT_PROG','PROGRAMMER',4000,10000);
+VALUES('IT_PROG','PROGRAMMER',4000,10000)
+       *
+ERROR at line 2:
+ORA-12899: value too large for column "C##DDD8"."JOB"."JOB_ID" (actual: 7, 
+maximum: 6) 
+
+
+SQL> INSERT INTO JOB
+  2  VALUES('ITPROG','PROGRAMMER',4000,10000);
+
+1 row created.
+
+SQL> INSERT INTO JOB
+  2  VALUES('MKMGR','MARKMANAGER',9000,15000);
+
+1 row created.
+
+SQL> INSERT INTO JOB
+  2  VALUES('FIMGR','FINANCEMANAGER',8200,12000);
+
+1 row created.
+
+SQL> INSERT INTO JOB
+  2  VALUES('FIACC','ACCOUNT',4200,9000);
+
+1 row created.
+
+SQL> INSERT INTO JOB
+  2  VALUES('LEC','LECTURER',6000,17000);
+
+1 row created.
+
+SQL> INSERT INTO JOB
+  2  VALUES('COMPOP','COMPOPERATOR',1500,3000);
+
+1 row created.
+
+SQL> CREATE TABLE EMPLOYEE(
+  2  EMP_ID NUMBER(5),
+  3  EMP_NAME VARCHAR2(10),
+  4  EMP_SAL NUMBER(8),
+  5  EMP_COMM NUMBER(5) NULL,
+  6  DEPT_NO NUMBER(4)
+  7  );
+
+Table created.
+
+SQL> INSERT INTO EMPLOYEE
+  2  VALUES(101,'SMITH',800,     ,20);
+VALUES(101,'SMITH',800,     ,20)
+                            *
+ERROR at line 2:
+ORA-00936: missing expression 
+
+
+SQL> INSERT INTO EMPLOYEE
+  2  VALUES(101,'SMITH',800,NULL,20);
+
+1 row created.
+
+SQL> SELECT
+  2  SELECT * FROM EMPLOYEE;
+SELECT * FROM EMPLOYEE
+*
+ERROR at line 2:
+ORA-00936: missing expression 
+
+
+SQL> INSERT INTO EMPLOYEE
+  2  VALUES(102,'SNEHAL',1600,300,25);
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE
+  2  VALUES(103,'ADAMA',1100,0,20);
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE
+  2  VALUES(104,'AMAN',3000,NULL,15);
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE
+  2  VALUES(105,'ANITA',5000,5000,10);
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE
+  2  VALUES(106,'SNEHA',2450,2450,10);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO EMPLOYEE
+  2  VALUES(107,'ANAMIKA',2975,NULL,30);
+
+1 row created.
+
+SQL> SELECT * FROM EMPLOYEE;
+
+    EMP_ID EMP_NAME      EMP_SAL   EMP_COMM    DEPT_NO                          
+---------- ---------- ---------- ---------- ----------                          
+       101 SMITH             800                    20                          
+       102 SNEHAL           1600        300         25                          
+       103 ADAMA            1100          0         20                          
+       104 AMAN             3000                    15                          
+       105 ANITA            5000       5000         10                          
+       106 SNEHA            2450       2450         10                          
+       107 ANAMIKA          2975                    30                          
+
+7 rows selected.
+
+SQL> CREATE TABLE DEPOSIT(
+  2  A_NO NUMBER(8),
+  3  C_NAME VARCHAR2(10),
+  4  B_NAME VARCHAR2(10),
+  5  AMOUNT NUMBER(10),
+  6  DATE DATE
+  7  );
+DATE DATE
+*
+ERROR at line 6:
+ORA-00904: : invalid identifier 
+
+
+SQL> CREATE TABLE DEPOSIT(
+  2  A_NO NUMBER(8),
+  3  C_NAME VARCHAR2(10),
+  4  B_NAME VARCHAR2(10),
+  5  AMOUNT NUMBER(10),
+  6  E_DATE DATE
+  7  );
+
+Table created.
+
+SQL> INSERT INTO DEPOSIT
+  2  VALUES(101,'ANIL','ANDHERI',7000,'01-JAN-2016');
+
+1 row created.
+
+SQL> INSERT INTO DEPOSIT
+  2  VALUES(102,'SUNIL','VIRAR',5000,'15-JUL-06');
+
+1 row created.
+
+SQL> INSERT INTO DEPOSIT
+  2  VALUES(103,'JAY','VILLEPARLE',6500,'15-MAR-06');
+
+1 row created.
+
+SQL> INSERT INTO DEPOSIT
+  2  VALUES(104,'VIJAY','ANDHERI',8000,'17-SEP-06');
+
+1 row created.
+
+SQL> INSERT INTO DEPOSIT
+  2  VALUES(105,'KEYUR','DADAR',7500,'19-NOV-06');
+
+1 row created.
+
+SQL> INSERT INTO DEPOSIT
+  2  VALUES(106,'MAYUR','BORIVALI',5500,'21-DEC-06');
+
+1 row created.
+
+SQL> SELECT * FROM EMPLOYEE;
+
+    EMP_ID EMP_NAME      EMP_SAL   EMP_COMM    DEPT_NO                          
+---------- ---------- ---------- ---------- ----------                          
+       101 SMITH             800                    20                          
+       102 SNEHAL           1600        300         25                          
+       103 ADAMA            1100          0         20                          
+       104 AMAN             3000                    15                          
+       105 ANITA            5000       5000         10                          
+       106 SNEHA            2450       2450         10                          
+       107 ANAMIKA          2975                    30                          
+
+7 rows selected.
+
+SQL> SELECT * FROM JOB;
+
+JOB_ID JOB_NAME           MIN_SAL    MAX_SAL                                    
+------ --------------- ---------- ----------                                    
+ITPROG PROGRAMMER            4000      10000                                    
+MKMGR  MARKMANAGER           9000      15000                                    
+FIMGR  FINANCEMANAGER        8200      12000                                    
+FIACC  ACCOUNT               4200       9000                                    
+LEC    LECTURER              6000      17000                                    
+COMPOP COMPOPERATOR          1500       3000                                    
+
+6 rows selected.
+
+SQL> SELECT * FROM DEPOSIT;
+
+      A_NO C_NAME     B_NAME         AMOUNT E_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       101 ANIL       ANDHERI          7000 01-JAN-16                           
+       102 SUNIL      VIRAR            5000 15-JUL-06                           
+       103 JAY        VILLEPARLE       6500 15-MAR-06                           
+       104 VIJAY      ANDHERI          8000 17-SEP-06                           
+       105 KEYUR      DADAR            7500 19-NOV-06                           
+       106 MAYUR      BORIVALI         5500 21-DEC-06                           
+
+6 rows selected.
+
+SQL> SELECT A_NO,C_NAME FROM DEPOSIT WHERE E_DATE BETWEEN 01-JAN-16 AND 25-7-06;
+SELECT A_NO,C_NAME FROM DEPOSIT WHERE E_DATE BETWEEN 01-JAN-16 AND 25-7-06
+                                                        *
+ERROR at line 1:
+ORA-00904: "JAN": invalid identifier 
+
+
+SQL> SELECT A_NO,C_NAME FROM DEPOSIT WHERE E_DATE BETWEEN 01-1-16 AND 25-7-06;
+SELECT A_NO,C_NAME FROM DEPOSIT WHERE E_DATE BETWEEN 01-1-16 AND 25-7-06
+                                             *
+ERROR at line 1:
+ORA-00932: inconsistent datatypes: expected DATE got NUMBER 
+
+
+SQL> SELECT A_NO,C_NAME FROM DEPOSIT WHERE E_DATE BETWEEN '01-JAN-16' AND '25-JUL-06';
+
+no rows selected
+
+SQL> UPDATE DEPOSIT SET E_DATE='01-JAN-06' WHERE A_NO=101;
+
+1 row updated.
+
+SQL> SELECT A_NO,C_NAME FROM DEPOSIT WHERE E_DATE BETWEEN '01-JAN-06' AND '25-JUL-06';
+
+      A_NO C_NAME                                                               
+---------- ----------                                                           
+       101 ANIL                                                                 
+       102 SUNIL                                                                
+       103 JAY                                                                  
+
+SQL> SELECT * FROM JOB WHERE MIN_SAL>4000;
+
+JOB_ID JOB_NAME           MIN_SAL    MAX_SAL                                    
+------ --------------- ---------- ----------                                    
+MKMGR  MARKMANAGER           9000      15000                                    
+FIMGR  FINANCEMANAGER        8200      12000                                    
+FIACC  ACCOUNT               4200       9000                                    
+LEC    LECTURER              6000      17000                                    
+
+SQL>  SPOOL OFF;
+SQL> SELECT * FROM EMPLOYEE;
+
+    EMP_ID EMP_NAME      EMP_SAL   EMP_COMM    DEPT_NO                          
+---------- ---------- ---------- ---------- ----------                          
+       101 SMITH             800                    20                          
+       102 SNEHAL           1600        300         25                          
+       103 ADAMA            1100          0         20                          
+       104 AMAN             3000                    15                          
+       105 ANITA            5000       5000         10                          
+       106 SNEHA            2450       2450         10                          
+       107 ANAMIKA          2975                    30                          
+
+7 rows selected.
+
+SQL> SELECT * FROM JOBS;
+SELECT * FROM JOBS
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT * FROM JOB;
+
+JOB_ID JOB_NAME           MIN_SAL    MAX_SAL                                    
+------ --------------- ---------- ----------                                    
+ITPROG PROGRAMMER            4000      10000                                    
+MKMGR  MARKMANAGER           9000      15000                                    
+FIMGR  FINANCEMANAGER        8200      12000                                    
+FIACC  ACCOUNT               4200       9000                                    
+LEC    LECTURER              6000      17000                                    
+COMPOP COMPOPERATOR          1500       3000                                    
+
+6 rows selected.
+
+SQL> SELECT * FROM DEPOSIT;
+
+      A_NO C_NAME     B_NAME         AMOUNT E_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       101 ANIL       ANDHERI          7000 01-JAN-06                           
+       102 SUNIL      VIRAR            5000 15-JUL-06                           
+       103 JAY        VILLEPARLE       6500 15-MAR-06                           
+       104 VIJAY      ANDHERI          8000 17-SEP-06                           
+       105 KEYUR      DADAR            7500 19-NOV-06                           
+       106 MAYUR      BORIVALI         5500 21-DEC-06                           
+
+6 rows selected.
+
+SQL> SELECT A_NO,AMOUNT FROM DEPOSIT WHERE E_DATE BETWEEN 01-JAN-06 AND 25-07-06;
+SELECT A_NO,AMOUNT FROM DEPOSIT WHERE E_DATE BETWEEN 01-JAN-06 AND 25-07-06
+                                                        *
+ERROR at line 1:
+ORA-00904: "JAN": invalid identifier 
+
+
+SQL> SELECT A_NO,AMOUNT FROM DEPOSIT WHERE E_DATE BETWEEN 01-JAN-06 AND 25-JUL-06;
+SELECT A_NO,AMOUNT FROM DEPOSIT WHERE E_DATE BETWEEN 01-JAN-06 AND 25-JUL-06
+                                                                      *
+ERROR at line 1:
+ORA-00904: "JUL": invalid identifier 
+
+
+SQL> SELECT A_NO,AMOUNT FROM DEPOSIT WHERE E_DATE BETWEEN 01-01-06 AND 25-07-06;
+SELECT A_NO,AMOUNT FROM DEPOSIT WHERE E_DATE BETWEEN 01-01-06 AND 25-07-06
+                                             *
+ERROR at line 1:
+ORA-00932: inconsistent datatypes: expected DATE got NUMBER 
+
+
+SQL> SELECT A_NO,AMOUNT FROM DEPOSIT WHERE E_DATE BETWEEN '01-JAN-06' AND '25-JUL-06';
+
+      A_NO     AMOUNT                                                           
+---------- ----------                                                           
+       101       7000                                                           
+       102       5000                                                           
+       103       6500                                                           
+
+SQL> SELECT JOB_NAME FROM JOB WHERE SALARY >4000;
+SELECT JOB_NAME FROM JOB WHERE SALARY >4000
+                               *
+ERROR at line 1:
+ORA-00904: "SALARY": invalid identifier 
+
+
+SQL> SELECT JOB_NAME FROM JOB WHERE MIN_SAL>4000;
+
+JOB_NAME                                                                        
+---------------                                                                 
+MARKMANAGER                                                                     
+FINANCEMANAGER                                                                  
+ACCOUNT                                                                         
+LECTURER                                                                        
+
+SQL> SELECT EMP_NAME AS NAME,EMP_SAL FROM EMPLOYEE WHERE DEPT_NO=20;
+
+NAME          EMP_SAL                                                           
+---------- ----------                                                           
+SMITH             800                                                           
+ADAMA            1100                                                           
+
+SQL> SELECT EMP_ID,EMP_NAME,DEPT_NO FROM EMPLOYEE WHERE DEPT_NO IN (10,20);
+
+    EMP_ID EMP_NAME      DEPT_NO                                                
+---------- ---------- ----------                                                
+       101 SMITH              20                                                
+       103 ADAMA              20                                                
+       105 ANITA              10                                                
+       106 SNEHA              10                                                
+
+SQL> SELECT * FROM EMPLOYEE WHERE EMP_NAME LIKE 'A%';
+
+    EMP_ID EMP_NAME      EMP_SAL   EMP_COMM    DEPT_NO                          
+---------- ---------- ---------- ---------- ----------                          
+       103 ADAMA            1100          0         20                          
+       104 AMAN             3000                    15                          
+       105 ANITA            5000       5000         10                          
+       107 ANAMIKA          2975                    30                          
+
+SQL> 
+SQL> SELECT * FROM EMPLOYEE WHERE EMP_NAME LIKE '__a%';
+
+no rows selected
+
+SQL> SELECT * FROM EMPLOYEE WHERE EMP_NAME LIKE '__a%';
+
+no rows selected
+
+SQL> SELECT * FROM EMPLOYEE WHERE EMP_NAME LIKE '__A%';
+
+    EMP_ID EMP_NAME      EMP_SAL   EMP_COMM    DEPT_NO                          
+---------- ---------- ---------- ---------- ----------                          
+       103 ADAMA            1100          0         20                          
+       104 AMAN             3000                    15                          
+       107 ANAMIKA          2975                    30                          
+
+SQL> SELECT * FROM EMPLOYEE WHERE EMP_NAME LIKE 'A_A%';
+
+    EMP_ID EMP_NAME      EMP_SAL   EMP_COMM    DEPT_NO                          
+---------- ---------- ---------- ---------- ----------                          
+       103 ADAMA            1100          0         20                          
+       104 AMAN             3000                    15                          
+       107 ANAMIKA          2975                    30                          
+
+SQL> SELECT EMP_NAME,EMP_NO,EMP_SAL FROM EMPLOYEE WHERE EMP_NAME LIKE 'ANI__';
+SELECT EMP_NAME,EMP_NO,EMP_SAL FROM EMPLOYEE WHERE EMP_NAME LIKE 'ANI__'
+                *
+ERROR at line 1:
+ORA-00904: "EMP_NO": invalid identifier 
+
+
+SQL> SELECT EMP_NAME,DEPT_NO,EMP_SAL FROM EMPLOYEE WHERE EMP_NAME LIKE 'ANI__';
+
+EMP_NAME      DEPT_NO    EMP_SAL                                                
+---------- ---------- ----------                                                
+ANITA              10       5000                                                
+
+SQL> 
+SQL> SELECT * FROM DEPOSIT ORDER BY C_NAME;
+
+      A_NO C_NAME     B_NAME         AMOUNT E_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       101 ANIL       ANDHERI          7000 01-JAN-06                           
+       103 JAY        VILLEPARLE       6500 15-MAR-06                           
+       105 KEYUR      DADAR            7500 19-NOV-06                           
+       106 MAYUR      BORIVALI         5500 21-DEC-06                           
+       102 SUNIL      VIRAR            5000 15-JUL-06                           
+       104 VIJAY      ANDHERI          8000 17-SEP-06                           
+
+6 rows selected.
+
+SQL> SPOOL OFF;
