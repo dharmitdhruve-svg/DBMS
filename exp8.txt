@@ -1,0 +1,175 @@
+SQL> CREATE TABLE DEPOSIT5 (
+  2      ACTNO VARCHAR2(5),
+  3      CNAME VARCHAR2(15),
+  4      BNAME VARCHAR2(15),
+  5      AMOUNT NUMBER(9,2),
+  6      ADATE DATE
+  7  );
+
+Table created.
+
+SQL> INSERT INTO DEPOSIT5 VALUES ('100','ANIL','VRCE',1000.00,'01-MAR-95');
+
+1 row created.
+
+SQL> INSERT INTO DEPOSIT5 VALUES ('101','SUNIL','AJNI',5000.00,'04-JAN-96');
+
+1 row created.
+
+SQL> INSERT INTO DEPOSIT5 VALUES ('102','MEHUL','KAROLBAGH',3500.00,'17-NOV-95');
+
+1 row created.
+
+SQL> INSERT INTO DEPOSIT5 VALUES ('108','KRANTI','NEHRU PLACE',5000.00,'02-JUL-95');
+
+1 row created.
+
+SQL> INSERT INTO DEPOSIT5 VALUES ('109','MINU','POWAI',7000.00,'10-AUG-95');
+
+1 row created.
+
+SQL> CREATE TABLE BORROW5 (
+  2      LOANNO VARCHAR2(5),
+  3      CNAME VARCHAR2(15),
+  4      BNAME VARCHAR2(15),
+  5      AMOUNT NUMBER(9,2)
+  6  );
+
+Table created.
+
+SQL> INSERT INTO BORROW5 VALUES ('201','ANIL','VRCE',1000.00);
+
+1 row created.
+
+SQL> INSERT INTO BORROW5 VALUES ('206','MEHUL','AJNI',5000.00);
+
+1 row created.
+
+SQL> INSERT INTO BORROW5 VALUES ('481','KRANTI','NEHRU PLACE',3000.00);
+
+1 row created.
+
+SQL> CREATE TABLE CUSTOMERS5 (
+  2      CNAME VARCHAR2(15),
+  3      CITY VARCHAR2(15)
+  4  );
+
+Table created.
+
+SQL> INSERT INTO CUSTOMERS5 VALUES ('ANIL','CALCUTTA');
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMERS5 VALUES ('SUNIL','DELHI');
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMERS5 VALUES ('SHIVANI','BOMBAY');
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMERS5 VALUES ('KRANTI','BOMBAY');
+
+1 row created.
+
+SQL> CREATE TABLE EMPLOYEE5 (
+  2      emp_no NUMBER(5),
+  3      emp_name VARCHAR2(20),
+  4      emp_sal NUMBER(10),
+  5      emp_comm NUMBER(10),
+  6      dept_no NUMBER(5)
+  7  );
+
+Table created.
+
+SQL> INSERT INTO EMPLOYEE5 VALUES (101,'Smith',800,NULL,20);
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE5 VALUES (103,'Adama',1100,0,20);
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE5 VALUES (105,'Anita',5000,5000,10);
+
+1 row created.
+
+SQL> SELECT SUM(AMOUNT) FROM DEPOSIT5;
+
+SUM(AMOUNT)                                                                     
+-----------                                                                     
+      21500                                                                     
+
+SQL> SELECT SUM(AMOUNT) FROM BORROW5 WHERE BNAME = 'KAROLBAGH';
+
+SUM(AMOUNT)                                                                     
+-----------                                                                     
+                                                                                
+
+SQL> SELECT MAX(AMOUNT) FROM BORROW5 WHERE BNAME = 'VRCE';
+
+MAX(AMOUNT)                                                                     
+-----------                                                                     
+       1000                                                                     
+
+SQL> SELECT COUNT(*) FROM CUSTOMERS5;
+
+  COUNT(*)                                                                      
+----------                                                                      
+         4                                                                      
+
+SQL> SELECT COUNT(DISTINCT CITY) FROM CUSTOMERS5;
+
+COUNT(DISTINCTCITY)                                                             
+-------------------                                                             
+                  3                                                             
+
+SQL> CREATE TABLE SUPPLIER5 AS SELECT * FROM EMPLOYEE5;
+
+Table created.
+
+SQL> CREATE TABLE SUP15 AS SELECT emp_no, emp_name FROM EMPLOYEE5;
+
+Table created.
+
+SQL> CREATE TABLE SUP25 AS SELECT * FROM EMPLOYEE5 WHERE 1=2;
+
+Table created.
+
+SQL> INSERT INTO SUP25 SELECT * FROM EMPLOYEE5
+  2  WHERE emp_name LIKE '_n___';
+
+1 row created.
+
+SQL> DELETE FROM SUP15;
+
+3 rows deleted.
+
+SQL> -- Note: In the employee structure, this refers to the emp_no column
+SQL> DELETE FROM SUPPLIER5 WHERE emp_no = 103;
+
+1 row deleted.
+
+SQL> RENAME SUP25 TO SUPLIER_TWO5;
+
+Table renamed.
+
+SQL> DROP TABLE SUP15;
+
+Table dropped.
+
+SQL> UPDATE EMPLOYEE5 SET dept_no = 10
+  2  WHERE emp_name LIKE '_m%';
+
+1 row updated.
+
+SQL> UPDATE EMPLOYEE5 SET emp_name = 'Updated_Name'
+  2  WHERE emp_no = 103;
+
+1 row updated.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> spool off;
